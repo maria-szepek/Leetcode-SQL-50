@@ -1,20 +1,23 @@
 /* Write your T-SQL query statement below */
+SELECT
+    user_id,
+    ROUND(
+        CAST(SUM(CASE WHEN action = 'confirmed' THEN 1 ELSE 0 END) AS NUMERIC) / COUNT(*),
+        2
+    ) AS confirmation_rate
+FROM 
+    Confirmations
+GROUP BY 
+    user_id
 
-select
-    c.user_id,
-    round(cast(sum(case when action = 'confirmed' then 1 else 0 end) as numeric) / count(*), 2)  as confirmation_rate
-from 
-    Confirmations c
-group by c.user_id
+UNION ALL
 
-union all
-
-select 
+SELECT 
     s.user_id,
     0
-from 
+FROM 
     Signups s
-left join 
-    Confirmations c on s.user_id = c.user_id 
-where 
-    c.user_id is null  
+LEFT JOIN 
+    Confirmations c ON s.user_id = c.user_id 
+WHERE 
+    c.user_id IS NULL  
