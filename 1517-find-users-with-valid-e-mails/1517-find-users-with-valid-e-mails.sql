@@ -6,7 +6,7 @@ from
 where 
 
     mail LIKE '[A-Za-z]%' -- start with letter 
-    AND BINARY_CHECKSUM(RIGHT(mail, 13)) = BINARY_CHECKSUM('@leetcode.com')
+    AND BINARY_CHECKSUM(RIGHT(mail, 13)) = BINARY_CHECKSUM('@leetcode.com') -- checks based on integer checksum based on its binary representation that is needed to force case sensitiveness 
     -- AND RIGHT(mail, 13) = '@leetcode.com'
     -- LIKE '%[abc]%': at least one allowed character 
     -- NOT LIKE '%[^abc]%' not least one character outside of the allowed characters 
