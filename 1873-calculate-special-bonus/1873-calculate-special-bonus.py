@@ -13,4 +13,10 @@ def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
     return res
 
     # alternative: employees[bonus] = 0 , then : employees loic[conditions] = employees.salary 
+
+# employees.loc[
+#     (employees["employee_id"] % 2 == 1) &
+#     (~employees["name"].str.startswith("M")),
+#     "bonus"
+# ] = employees["salary"]
     
